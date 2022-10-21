@@ -4,8 +4,6 @@
 #include <windows.h>
 #include <random>
 #include <time.h>
-#include <limits>
-#undef max
 
 using namespace std;
 
