@@ -20,25 +20,30 @@ string Student::introduce()
 
 string Student::drink()
 {
-	string message = "\n* " + Human::drink() + ' ';
+	string message = "\n* " + Human::drink();
 
-	if (days_student_id_expires > 0)
+	if (!is_drunk)
 	{
-		message += "The student id ";
-		if (days_student_id_expires > 14)
-			message += "will be valid for";
+		message += ' ';
+
+		if (days_student_id_expires > 0)
+		{
+			message += "The student id ";
+			if (days_student_id_expires > 14)
+				message += "will be valid for";
+			else
+				message += "expires in";
+			message += " " + to_string(days_student_id_expires) + " day(s), ";
+			if (days_student_id_expires > 14)
+				message += pronoun + " gets";
+			else
+				message += "but " + pronoun + " managed to get";
+			message += " a 20% discount. " + get_capitalized_pronoun() + " is absolutely happy";
+		}
 		else
-			message += "expires in";
-		message += " " + to_string(days_student_id_expires) + " day(s), ";
-		if (days_student_id_expires > 14)
-			message += pronoun + " gets";
-		else
-			message += "but " + pronoun + " managed to get";
-		message += " a 20% discount. " + get_capitalized_pronoun() + " is absolutely happy";
-	}
-	else
-	{
-		message += "But a coleague intervenes half the way! The student id is expired and " + pronoun + " can't afford a full cup without a student discount";
+		{
+			message += "But a coleague intervenes half the way! The student id is expired and " + pronoun + " can't afford a full cup without a student discount";
+		}
 	}
 
 	return message + " *";
